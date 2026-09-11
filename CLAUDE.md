@@ -4,8 +4,16 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Status
 
-Early skeleton. `main.py` opens a 1280x720 PyQt6 window showing "Hello, World!".
-No tests or lint config yet. Update this file once there is real architecture.
+Read `SPEC.md` for what Hound is and where it is going. The home screen lists tools as
+cards, and the first tool, social account discovery, works. No test suite or lint config
+yet.
+
+Nested guidance lives next to the code it governs: `hound/ui/CLAUDE.md`,
+`hound/tools/CLAUDE.md`, and `hound/tools/social_accounts/CLAUDE.md`.
+
+Project skills: `new-tool` to add a tool, `add-site` to add or fix a site in the social
+search, `run-app` to run or verify the GUI. The `architecture-guard` agent checks the
+layering rules.
 
 ## Environment
 
