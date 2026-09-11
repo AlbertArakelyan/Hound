@@ -1,0 +1,89 @@
+# Hound
+
+Local-first penetration testing toolkit consisting of many tools, e.g. username to
+social accounts.
+
+Hound is a desktop app. The home screen lists the tools as cards, and each tool opens
+its own page. Everything runs on your machine, there is no backend and no account.
+
+## Features
+
+- **Social account discovery.** Give it a username and it checks 27 public sites for a
+  profile. Sites are checked concurrently, results appear as they arrive, and hits show
+  a clickable profile link. A site that blocks or rate limits the request is reported as
+  unknown, never as not found.
+- **theHarvester** (coming soon). Emails, subdomains, and hosts from public sources.
+- **hunter.io** (coming soon). Email lookup by domain.
+
+## Requirements
+
+- Python 3.12. Tested on 3.12.3.
+- Linux, macOS, or Windows. Developed on Linux with X11.
+- On Linux, the system package `libxcb-cursor0`. Qt needs it since 6.5 and will not
+  start without it.
+
+```bash
+sudo apt install -y libxcb-cursor0
+```
+
+Python packages are in `requirements.txt`: PyQt6 and requests.
+
+## Running
+
+```bash
+git clone <repo-url> Hound
+cd Hound
+python3 -m venv .venv
+source .venv/bin/activate
+pip install -r requirements.txt
+python main.py
+```
+
+## Development
+
+Work inside the venv. Read `SPEC.md` for the design and `CLAUDE.md` for the rules.
+
+The lookup engines hold no Qt imports, so you can test them with no display:
+
+```bash
+python -c "
+from hound.tools.social_accounts.lookup import scan
+for r in scan('torvalds'):
+    print(r.status.value, r.site, r.url)
+"
+```
+
+To check GUI wiring without opening a window, run Qt's offscreen backend:
+
+```bash
+QT_QPA_PLATFORM=offscreen python -c "
+from PyQt6.QtWidgets import QApplication
+from hound.ui.main_window import MainWindow
+app = QApplication(['test'])
+MainWindow().show()
+print('ok')
+"
+```
+
+### Layout
+
+```
+main.py                     starts the app
+hound/app.py                QApplication setup
+hound/ui/                   navigation, home screen, shared widgets
+hound/tools/registry.py     the tool list the home screen reads
+hound/tools/<tool>/         one directory per tool, logic split from UI
+```
+
+Adding a tool means a new directory plus one registry entry. The home screen does not
+change.
+
+## Scope
+
+For authorized security testing only. Hound reads public pages. It does not attempt
+logins and does not bypass access controls. You are responsible for having permission
+to test what you point it at.
+
+## License
+
+MIT. See [LICENSE](LICENSE).
