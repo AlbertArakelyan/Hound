@@ -33,6 +33,23 @@ when found.
 - Show results in the GUI as they arrive, do not wait for every site to finish.
 - The site list is data, not code, so sites can be added without touching the engine.
 
+## Planned tools
+
+The social account search is the first of many. Others on the list are theHarvester
+(emails, subdomains, and hosts from public sources) and hunter.io (email lookup by
+domain), with more to follow.
+
+These bring shapes the first tool does not have:
+
+- Wrappers around an external binary. The tool has to cope with the binary missing and
+  read its output as it runs.
+- Clients for a third party API that needs a key. Keys stay out of the repo and are
+  entered in the app.
+
+Both still follow the structure rules below: own directory, Qt free logic, one registry
+entry. A tool that cannot run yet, because a binary or key is missing, says so on its
+page instead of failing silently.
+
 ## Structure
 
 The file layout must match the two level design above. Each tool is self contained, so
@@ -59,3 +76,4 @@ logins or bypass access controls.
 - Whether results get exported, and in what format.
 - Rate limiting and whether requests go through a proxy.
 - What a tool declares to the registry, and where the registry file lives.
+- Where API keys live, and how a tool reports that it is missing a key or a binary.
