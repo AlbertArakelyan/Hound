@@ -25,6 +25,11 @@ Either repeat the guard above, or call `.venv/bin/python` and `.venv/bin/pip` di
 Running the app needs the system package `libxcb-cursor0`. Without it Qt aborts with
 "Could not load the Qt platform plugin xcb".
 
+## Git
+
+Never commit unless I ask for it explicitly. Leave changes in the working tree and say
+what is uncommitted. The same goes for pushing, branching, amending, and reverting.
+
 ## Architecture
 
 This project will grow. Keep it clean from the start.
