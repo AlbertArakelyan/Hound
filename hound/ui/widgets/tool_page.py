@@ -31,8 +31,11 @@ class ToolPage(QWidget):
         layout.addLayout(header)
 
         self._content = QVBoxLayout()
-        layout.addLayout(self._content)
-        layout.addStretch()
+        self._content.setSpacing(16)
+        layout.addLayout(self._content, 1)
 
-    def add_content(self, widget: QWidget) -> None:
-        self._content.addWidget(widget)
+    def add_content(self, widget: QWidget, stretch: int = 0) -> None:
+        self._content.addWidget(widget, stretch)
+
+    def shutdown(self) -> None:
+        """Called before the app closes. Override to stop background work."""

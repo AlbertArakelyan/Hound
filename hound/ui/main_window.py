@@ -1,3 +1,4 @@
+from PyQt6.QtGui import QCloseEvent
 from PyQt6.QtWidgets import QMainWindow, QStackedWidget
 
 from hound.tools.registry import ToolSpec, TOOLS
@@ -31,3 +32,8 @@ class MainWindow(QMainWindow):
 
     def _show_home(self) -> None:
         self._stack.setCurrentWidget(self._home)
+
+    def closeEvent(self, event: QCloseEvent) -> None:
+        for index in self._pages.values():
+            self._stack.widget(index).shutdown()
+        super().closeEvent(event)
