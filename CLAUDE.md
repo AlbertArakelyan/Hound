@@ -25,6 +25,19 @@ Either repeat the guard above, or call `.venv/bin/python` and `.venv/bin/pip` di
 Running the app needs the system package `libxcb-cursor0`. Without it Qt aborts with
 "Could not load the Qt platform plugin xcb".
 
+## Architecture
+
+This project will grow. Keep it clean from the start.
+
+- One responsibility per file and per directory. If a name needs "and", split it.
+- Keep UI, business logic, and I/O separate. Widgets should not talk to the network,
+  the filesystem, or a database directly.
+- Dependencies point inward. Core logic must not import UI or framework code, so it
+  stays testable without Qt.
+- Put new code in the module that owns that concern. Do not grow `main.py`, it should
+  only wire things together and start the app.
+- Refactor when a file stops being obvious, not later. Move code instead of duplicating it.
+
 ## Writing style
 
 This applies to everything a human reads: README files, code comments, commit messages,
