@@ -1,5 +1,5 @@
-from PyQt6.QtGui import QCloseEvent
-from PyQt6.QtWidgets import QMainWindow, QStackedWidget
+from PySide6.QtGui import QCloseEvent
+from PySide6.QtWidgets import QMainWindow, QStackedWidget
 
 from hound.tools.registry import ToolSpec, TOOLS
 from hound.ui.home import HomeScreen

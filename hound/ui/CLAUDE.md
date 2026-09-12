@@ -1,6 +1,6 @@
 # UI
 
-This package is the only place allowed to import PyQt6 outside a tool's page and worker.
+This package is the only place allowed to import PySide6 outside a tool's page and worker.
 
 ## What lives here
 

@@ -25,7 +25,7 @@ backend.
 
 ```bash
 QT_QPA_PLATFORM=offscreen .venv/bin/python - <<'PY' 2>&1 | grep -v propagateSizeHints
-from PyQt6.QtWidgets import QApplication
+from PySide6.QtWidgets import QApplication
 from hound.ui.main_window import MainWindow
 from hound.tools.registry import TOOLS
 

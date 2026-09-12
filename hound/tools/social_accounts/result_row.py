@@ -1,7 +1,7 @@
 """One line in the results list."""
 
-from PyQt6.QtCore import Qt
-from PyQt6.QtWidgets import QHBoxLayout, QLabel, QWidget
+from PySide6.QtCore import Qt
+from PySide6.QtWidgets import QHBoxLayout, QLabel, QWidget
 
 from hound.tools.social_accounts.models import Result, Status
 from hound.ui import style

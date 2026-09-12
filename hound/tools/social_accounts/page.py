@@ -1,4 +1,4 @@
-from PyQt6.QtWidgets import QCheckBox, QHBoxLayout, QLabel, QLineEdit, QPushButton, QWidget
+from PySide6.QtWidgets import QCheckBox, QHBoxLayout, QLabel, QLineEdit, QPushButton, QWidget
 
 from hound.tools.social_accounts.models import Result, Status
 from hound.tools.social_accounts.result_row import ResultRow
