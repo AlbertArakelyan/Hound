@@ -1,18 +1,29 @@
 SHELL := /bin/bash
 VENV := .venv
+PY := python3
 
 .DEFAULT_GOAL := run
-.PHONY: run
+.PHONY: run install
+
+# Fail if there is no venv, then activate it unless one is already active.
+# Every line ends with a backslash so the whole block stays one shell command,
+# which is what lets the activation survive into the rest of the recipe.
+define require_venv
+if [ ! -f "$(VENV)/bin/activate" ]; then \
+	echo "error: no venv at $(VENV). Create one first:"; \
+	echo "  $(PY) -m venv $(VENV) && make install"; \
+	exit 1; \
+fi; \
+if [ -z "$$VIRTUAL_ENV" ]; then \
+	echo "activating $(VENV)"; \
+	source $(VENV)/bin/activate; \
+fi
+endef
 
 run:
-	@if [ ! -f "$(VENV)/bin/activate" ]; then \
-		echo "error: no venv at $(VENV). Create one first:"; \
-		echo "  python3 -m venv $(VENV) && $(VENV)/bin/pip install -r requirements.txt"; \
-		exit 1; \
-	fi
-	@if [ -n "$$VIRTUAL_ENV" ]; then \
-		python3 main.py; \
-	else \
-		echo "activating $(VENV)"; \
-		source $(VENV)/bin/activate && python3 main.py; \
-	fi
+	@$(require_venv); \
+	$(PY) main.py
+
+install:
+	@$(require_venv); \
+	$(PY) -m pip install -r requirements.txt
