@@ -109,4 +109,7 @@ GPL-3.0. See [LICENSE](LICENSE).
 
 Copyright (c) 2026 Albert Arakelyan.
 
-Hound builds on PyQt6, which is distributed under the GPL, so Hound is GPL too.
+Hound uses the GPL-licensed version of PyQt6, so it is distributed under a GPL-compatible
+license. PyQt6 is dual-licensed, GPLv3 or a commercial license from Riverbank, so this
+follows from the version pinned in `requirements.txt`, not from PyQt6 being GPL in every
+context.
