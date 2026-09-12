@@ -49,6 +49,9 @@ the social account search was ported from.
 Never commit unless I ask for it explicitly. Leave changes in the working tree and say
 what is uncommitted. The same goes for pushing, branching, amending, and reverting.
 
+Commit messages are `type(branch number): what you did`, for example
+`feat(1): add Email Scraper tool`. The `commit` skill has the types and the rules.
+
 ## Architecture
 
 This project will grow. Keep it clean from the start.
