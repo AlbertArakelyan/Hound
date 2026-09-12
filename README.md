@@ -8,6 +8,11 @@ its own page. Everything runs on your machine, there is no backend and no accoun
 
 ![Screenshot](./screenshot.png)
 
+> [!NOTE]
+> Hound is under active development. The tools listed below work today, and more are
+> planned. Interfaces and output formats may change between versions until the project
+> reaches 1.0.
+
 ## Features
 
 - **Social account discovery.** Give it a username and it checks 27 public sites for a
