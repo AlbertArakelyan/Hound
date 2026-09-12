@@ -14,6 +14,8 @@ class ToolSpec:
     name: str
     description: str
     create_page: Callable[[], Any]
+    # Shown on the card. One emoji, optional.
+    icon: str = ""
 
 
 def _social_accounts_page() -> Any:
@@ -34,11 +36,13 @@ TOOLS: tuple[ToolSpec, ...] = (
         name="Social Account Discovery",
         description="Find social media accounts that use a given username.",
         create_page=_social_accounts_page,
+        icon="🔎",
     ),
     ToolSpec(
         id="email-scraper",
         name="Email Scraper",
         description="Crawl a site and collect the email addresses it exposes.",
         create_page=_email_scraper_page,
+        icon="✉️",
     ),
 )

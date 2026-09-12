@@ -21,9 +21,7 @@ class HomeScreen(QWidget):
         layout.setContentsMargins(32, 32, 32, 32)
         layout.setSpacing(24)
 
-        title = QLabel("👻 Hound")
-        title.setStyleSheet("font-size: 28px; font-weight: bold;")
-        layout.addWidget(title)
+        layout.addLayout(self._build_header())
 
         grid = QGridLayout()
         grid.setSpacing(16)
@@ -31,7 +29,23 @@ class HomeScreen(QWidget):
             card = ToolCard(spec)
             card.clicked.connect(self.tool_selected.emit)
             grid.addWidget(card, index // COLUMNS, index % COLUMNS)
+        # Keeps the cards their own size instead of spreading across the window.
+        grid.setColumnStretch(COLUMNS, 1)
         layout.addLayout(grid)
 
         layout.addStretch()
         layout.setAlignment(Qt.AlignmentFlag.AlignTop)
+
+    def _build_header(self) -> QVBoxLayout:
+        header = QVBoxLayout()
+        header.setSpacing(4)
+
+        title = QLabel("👻 Hound")
+        title.setStyleSheet("font-size: 28px; font-weight: bold;")
+
+        subtitle = QLabel("Local-first penetration testing toolkit")
+        subtitle.setStyleSheet("color: rgba(127, 127, 127, 1.0);")
+
+        header.addWidget(title)
+        header.addWidget(subtitle)
+        return header
