@@ -1,34 +1,27 @@
-from PyQt6.QtCore import Qt
-from PyQt6.QtWidgets import (
-    QCheckBox,
-    QHBoxLayout,
-    QLabel,
-    QLineEdit,
-    QPushButton,
-    QScrollArea,
-    QVBoxLayout,
-    QWidget,
-)
+from PyQt6.QtWidgets import QCheckBox, QHBoxLayout, QLabel, QLineEdit, QPushButton, QWidget
 
 from hound.tools.social_accounts.models import Result, Status
 from hound.tools.social_accounts.result_row import ResultRow
 from hound.tools.social_accounts.search_worker import SearchWorker
 from hound.tools.social_accounts.sites import SITES
+from hound.ui import style
+from hound.ui.widgets.panel import Panel
 from hound.ui.widgets.tool_page import ToolPage
 
 TITLE = "Social Account Discovery"
+ICON = "🔎"
 
 
 class SocialAccountsPage(ToolPage):
     def __init__(self) -> None:
-        super().__init__(TITLE)
+        super().__init__(TITLE, ICON)
 
         self._worker: SearchWorker | None = None
         self._rows: list[tuple[ResultRow, Result]] = []
 
         self.add_content(self._build_search_bar())
         self.add_content(self._build_status_line())
-        self.add_content(self._build_results_area(), 1)
+        self.add_content(self._build_results(), 1)
 
     # Layout ---------------------------------------------------------------
 
@@ -41,10 +34,12 @@ class SocialAccountsPage(ToolPage):
         self._input = QLineEdit()
         self._input.setPlaceholderText("Username")
         self._input.setClearButtonEnabled(True)
+        self._input.setStyleSheet(style.input_style())
         self._input.returnPressed.connect(self._start_search)
 
         self._search_button = QPushButton("Search")
-        self._search_button.setFixedWidth(100)
+        self._search_button.setStyleSheet(style.primary_button_style())
+        self._search_button.setFixedWidth(110)
         self._search_button.clicked.connect(self._start_search)
 
         self._found_only = QCheckBox("Found only")
@@ -57,22 +52,12 @@ class SocialAccountsPage(ToolPage):
 
     def _build_status_line(self) -> QWidget:
         self._status = QLabel(f"{len(SITES)} sites ready.")
-        self._status.setStyleSheet("color: #9a9a9a;")
+        self._status.setStyleSheet(f"color: {style.muted()};")
         return self._status
 
-    def _build_results_area(self) -> QWidget:
-        self._results_layout = QVBoxLayout()
-        self._results_layout.setContentsMargins(0, 0, 0, 0)
-        self._results_layout.setSpacing(2)
-        self._results_layout.setAlignment(Qt.AlignmentFlag.AlignTop)
-
-        container = QWidget()
-        container.setLayout(self._results_layout)
-
-        area = QScrollArea()
-        area.setWidgetResizable(True)
-        area.setWidget(container)
-        return area
+    def _build_results(self) -> QWidget:
+        self._panel = Panel("Results", "Results will appear here.")
+        return self._panel
 
     # Search ---------------------------------------------------------------
 
@@ -84,7 +69,8 @@ class SocialAccountsPage(ToolPage):
         if self._worker is not None:
             return
 
-        self._clear_results()
+        self._panel.clear()
+        self._rows.clear()
         self._search_button.setEnabled(False)
         self._status.setText(f"Scanning {len(SITES)} sites for {username} ...")
 
@@ -98,10 +84,17 @@ class SocialAccountsPage(ToolPage):
         row = ResultRow(result)
         row.setVisible(self._passes_filter(result))
         self._rows.append((row, result))
-        self._results_layout.addWidget(row)
+        self._panel.add_row(row)
 
     def _on_finished(self, found: int, unknown: int, elapsed: float) -> None:
-        self._status.setText(f"{found} found, {unknown} unknown, {elapsed:.1f}s")
+        not_found = len(self._rows) - found - unknown
+        self._status.setText(
+            f'<span style="color: rgb({style.FOUND}); font-weight: bold;">'
+            f"{found} found</span>"
+            f'<span style="color: {style.muted()};">'
+            f"  |  {not_found} not found  |  {unknown} unknown  |  {elapsed:.1f}s"
+            f"</span>"
+        )
 
     def _on_worker_done(self) -> None:
         self._worker = None
@@ -120,9 +113,3 @@ class SocialAccountsPage(ToolPage):
     def _apply_filter(self) -> None:
         for row, result in self._rows:
             row.setVisible(self._passes_filter(result))
-
-    def _clear_results(self) -> None:
-        for row, _ in self._rows:
-            row.setParent(None)
-            row.deleteLater()
-        self._rows.clear()

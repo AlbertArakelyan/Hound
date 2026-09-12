@@ -4,6 +4,7 @@ from PyQt6.QtCore import Qt, pyqtSignal
 from PyQt6.QtWidgets import QGridLayout, QLabel, QVBoxLayout, QWidget
 
 from hound.tools.registry import ToolSpec
+from hound.ui import style
 from hound.ui.widgets.tool_card import ToolCard
 
 COLUMNS = 3
@@ -44,7 +45,7 @@ class HomeScreen(QWidget):
         title.setStyleSheet("font-size: 28px; font-weight: bold;")
 
         subtitle = QLabel("Local-first penetration testing toolkit")
-        subtitle.setStyleSheet("color: rgba(127, 127, 127, 1.0);")
+        subtitle.setStyleSheet(f"color: {style.muted()};")
 
         header.addWidget(title)
         header.addWidget(subtitle)

@@ -53,6 +53,25 @@ The `propagateSizeHints` line is noise from the offscreen backend, not a problem
 - Test the engine separately with a fake session object. It has no Qt imports, so it
   needs no display and no network.
 - Close the window at the end. A `QThread` destroyed while running aborts the process.
+- Call `app.processEvents()` several times before reading geometry or grabbing a
+  screenshot. One pass posts the layout request, the next applies it. After a single
+  pass rows are still invisible at position (2, 2), which looks like results never
+  rendered when they did.
+
+## Screenshots
+
+To see what a change actually looks like, grab the window offscreen and read the image:
+
+```python
+w.grab().save("/path/in/scratchpad/shot.png")
+```
+
+Set the theme with a `QPalette`, never with `app.setStyleSheet`. A global stylesheet
+paints a background on every QLabel, so the shot comes back with grey boxes behind all
+the text that do not exist in the real app.
+
+Render both a light and a dark palette. The app follows the system theme, and a colour
+that works in one can vanish in the other.
 
 ## Report honestly
 

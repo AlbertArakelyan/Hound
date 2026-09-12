@@ -18,6 +18,9 @@ registry entry. Adding a tool must not change the home screen.
      does not change when the data does.
 3. Write `page.py` with a `ToolPage` subclass from `hound.ui.widgets.tool_page`.
    Build the UI in small `_build_*` methods and add them with `add_content()`.
+   Pass the tool's emoji as the second argument so the page matches its card.
+   Use `hound.ui.widgets.panel.Panel` for results, and take every colour, input and
+   button style from `hound.ui.style`. Write no colours of your own.
 4. If the work can take more than an instant, put it in a `QThread` subclass in
    `search_worker.py` (or `<job>_worker.py`). Emit one signal per result so the page
    fills in as answers arrive, and one signal when the run ends.

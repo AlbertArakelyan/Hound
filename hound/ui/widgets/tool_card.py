@@ -3,22 +3,7 @@ from PyQt6.QtGui import QMouseEvent
 from PyQt6.QtWidgets import QFrame, QHBoxLayout, QLabel, QVBoxLayout
 
 from hound.tools.registry import ToolSpec
-
-ACCENT = "124, 92, 255"
-
-# Greys are given as alpha over the theme background, so the card reads the same
-# whether the system theme is light or dark.
-CARD_STYLE = f"""
-#ToolCard {{
-    background-color: rgba(127, 127, 127, 0.07);
-    border: 1px solid rgba(127, 127, 127, 0.28);
-    border-radius: 12px;
-}}
-#ToolCard:hover {{
-    background-color: rgba({ACCENT}, 0.10);
-    border: 1px solid rgba({ACCENT}, 0.70);
-}}
-"""
+from hound.ui import style
 
 
 class ToolCard(QFrame):
@@ -31,7 +16,7 @@ class ToolCard(QFrame):
         self._spec = spec
 
         self.setObjectName("ToolCard")
-        self.setStyleSheet(CARD_STYLE)
+        self.setStyleSheet(style.card_style("ToolCard"))
         self.setAttribute(Qt.WidgetAttribute.WA_StyledBackground, True)
         self.setCursor(Qt.CursorShape.PointingHandCursor)
         self.setFixedSize(320, 150)
@@ -62,12 +47,12 @@ class ToolCard(QFrame):
         description = QLabel(self._spec.description)
         description.setWordWrap(True)
         description.setAlignment(Qt.AlignmentFlag.AlignTop)
-        description.setStyleSheet("color: rgba(127, 127, 127, 1.0);")
+        description.setStyleSheet(f"color: {style.muted()};")
         return description
 
     def _build_hint(self) -> QLabel:
         hint = QLabel("Open")
-        hint.setStyleSheet(f"color: rgba({ACCENT}, 0.95); font-size: 12px;")
+        hint.setStyleSheet(f"color: {style.accent(0.95)}; font-size: 12px;")
         return hint
 
     def showEvent(self, event) -> None:
