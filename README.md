@@ -113,3 +113,9 @@ Hound uses the GPL-licensed version of PyQt6, so it is distributed under a GPL-c
 license. PyQt6 is dual-licensed, GPLv3 or a commercial license from Riverbank, so this
 follows from the version pinned in `requirements.txt`, not from PyQt6 being GPL in every
 context.
+
+<!-- Hound is licensed under GPL-3.0. See [LICENSE](LICENSE).
+
+Hound uses PyQt6, which is available under the GNU GPL v3
+and Riverbank's commercial license. Hound uses the GPL-licensed
+version of PyQt6. -->
