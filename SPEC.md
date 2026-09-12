@@ -83,11 +83,20 @@ a project like this. Keep both current as tools are added.
 Not for collecting personal data at scale, evading rate limits, or unsolicited outreach.
 A feature that only makes sense for one of those does not belong here.
 
+## Decided
+
+- The site list is a Python module, `hound/tools/social_accounts/sites.py`. Data only,
+  so adding a site does not touch the engine.
+- "Does not exist" versus "blocked" is decided per site by one of three detection
+  methods, with every code in `BLOCKED_CODES` reported as unknown.
+- A tool declares `id`, `name`, `description`, `create_page` and an optional `icon` to
+  `hound/tools/registry.py`, through a lazy factory that keeps the registry Qt free.
+- The GUI is PySide6 under the LGPL, which is what allows the MIT licence. Only
+  `QtCore`, `QtGui` and `QtWidgets` may be imported.
+
 ## Open questions
 
-- Which sites to cover first, and where the list lives (JSON, YAML, Python).
-- How to tell "profile does not exist" from "page blocked us", per site.
-- Whether results get exported, and in what format.
-- Rate limiting and whether requests go through a proxy.
-- What a tool declares to the registry, and where the registry file lives.
+- Whether results get exported to a file, and in what format. The email scraper has
+  Copy all, which is not the same thing.
+- Rate limiting, and whether requests go through a proxy.
 - Where API keys live, and how a tool reports that it is missing a key or a binary.

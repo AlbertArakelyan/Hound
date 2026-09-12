@@ -5,15 +5,19 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 ## Status
 
 Read `SPEC.md` for what Hound is and where it is going. The home screen lists tools as
-cards, and the first tool, social account discovery, works. No test suite or lint config
-yet.
+cards. Two tools work: social account discovery and the email scraper. No test suite or
+lint config yet.
+
+The GUI is PySide6, which is LGPL. That is what lets Hound be MIT, so import only
+`QtCore`, `QtGui` and `QtWidgets`. See `hound/ui/CLAUDE.md`.
 
 Nested guidance lives next to the code it governs: `hound/ui/CLAUDE.md`,
-`hound/tools/CLAUDE.md`, and `hound/tools/social_accounts/CLAUDE.md`.
+`hound/tools/CLAUDE.md`, `hound/tools/social_accounts/CLAUDE.md` and
+`hound/tools/email_scraper/CLAUDE.md`.
 
 Project skills: `new-tool` to add a tool, `add-site` to add or fix a site in the social
-search, `run-app` to run or verify the GUI. The `architecture-guard` agent checks the
-layering rules.
+search, `run-app` to run or verify the GUI, `commit` for the message convention. The
+`architecture-guard` agent checks the layering rules.
 
 ## Environment
 
@@ -29,6 +33,9 @@ python main.py
 
 Each Bash call starts a fresh shell, so `source` does not carry over between calls.
 Either repeat the guard above, or call `.venv/bin/python` and `.venv/bin/pip` directly.
+
+`make run` and `make install` do the same guard and activation from a terminal. They
+error out if there is no venv rather than creating one.
 
 Running the app needs the system package `libxcb-cursor0`. Without it Qt aborts with
 "Could not load the Qt platform plugin xcb".
