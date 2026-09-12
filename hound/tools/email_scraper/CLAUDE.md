@@ -32,17 +32,23 @@ gives up its address. Fragments are stripped when resolving, so `/page` and
 
 ## Obfuscated addresses
 
-Many sites never put the address in the HTML. `decoding.py` handles the common case,
-Cloudflare email obfuscation, which stores the address as a hex blob in
+Many sites encode the address instead of writing it out. `decoding.py` handles the
+common case, Cloudflare email obfuscation, which serves the address as a hex blob in
 `data-cfemail="..."` or in a `/cdn-cgi/l/email-protection#...` link and decodes it in
-the browser. A plain regex over the page finds nothing on those sites.
+the browser. A plain regex finds nothing on those sites, though a person reading the
+page sees the address.
+
+This is a display trick aimed at naive scrapers, not an access control, and the blob is
+served to every visitor. Keep that distinction in any wording a user reads. Decoding it
+is not bypassing a security boundary, and describing it that way overstates what the
+tool does.
 
 `decode_cfemail` returns a candidate, not a verified address. `scraper.py` checks it
 against `EMAIL_RE` before recording, so a malformed blob cannot inject junk.
 
 If a site shows an email in the browser but the crawl finds none, fetch the page and
-look for how it is hidden before touching the regex. It is usually another obfuscation
-scheme, or the address is rendered by JavaScript and is not in the HTML at all.
+look at how the address is encoded before touching the regex. It is usually another
+obfuscation scheme, or the address is built by JavaScript and is not in the HTML at all.
 
 ## Rules
 

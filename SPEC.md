@@ -66,8 +66,15 @@ adding or removing one touches only its own directory plus the registry entry.
 
 ## Scope and use
 
-For authorized security testing only. The tool reads public pages, it does not attempt
-logins or bypass access controls.
+For authorized security testing only. The tool reads publicly served pages. It does not
+attempt logins, and it does not defeat authentication or any other access control.
+
+Decoding an email obfuscation scheme is reading something the site already serves to
+every visitor, not crossing a security boundary. Describe it that way. A tool that
+overstates what it does invites people to use it as if the overstatement were true.
+
+Respecting the target's terms, its rate limits, and the privacy law covering whatever is
+collected is the user's responsibility, and the app should not make that harder.
 
 ## Open questions
 

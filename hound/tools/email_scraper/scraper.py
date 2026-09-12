@@ -101,7 +101,7 @@ def crawl(start_url: str, *,
         for address in EMAIL_RE.findall(response.text):
             found_here += _record(address, emails, on_email)
 
-        # Addresses the page hides from a plain text scan. A decoded blob is only a
+        # Addresses the page encodes rather than writing out. A decoded blob is only a
         # candidate, so it has to look like an address before it counts.
         for candidate in find_obfuscated(response.text):
             if EMAIL_RE.fullmatch(candidate):

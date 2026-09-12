@@ -1,7 +1,11 @@
-"""Pull out email addresses that are not in the HTML as plain text.
+"""Read email addresses the page encodes instead of writing as plain text.
 
-Cloudflare's email obfuscation is the common case. It replaces the address with a hex
-blob and decodes it in the browser, so a plain regex over the page finds nothing.
+Cloudflare's email obfuscation is the common case. The site serves the address as a hex
+blob to every visitor and its own script decodes it in the browser, so a plain regex
+over the page finds nothing while a person reading the page sees the address.
+
+This is a display trick against naive scrapers, not an access control. Nothing here
+defeats authentication or reads anything the site does not already hand out.
 """
 
 import re
@@ -30,7 +34,7 @@ def decode_cfemail(blob: str) -> str | None:
 
 
 def find_obfuscated(html: str) -> list[str]:
-    """Candidate addresses hidden behind Cloudflare obfuscation in this page."""
+    """Candidate addresses this page encodes with Cloudflare obfuscation."""
     candidates = []
     for pattern in (CF_ATTR_RE, CF_LINK_RE):
         for blob in pattern.findall(html):

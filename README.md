@@ -14,10 +14,11 @@ its own page. Everything runs on your machine, there is no backend and no accoun
   profile. Sites are checked concurrently, results appear as they arrive, and hits show
   a clickable profile link. A site that blocks or rate limits the request is reported as
   unknown, never as not found.
-- **Email Scraper.** Point it at a URL and it crawls the site, collecting every email
-  address it finds, including ones hidden by Cloudflare email obfuscation. Stays on the
-  starting domain by default, with an adjustable page limit and a stop button. Results
-  appear while the crawl runs.
+- **Email Scraper.** Point it at a URL and it crawls publicly accessible pages to
+  collect email addresses, including addresses encoded by common HTML obfuscation
+  mechanisms such as the one Cloudflare serves publicly. Stays on the starting domain by
+  default, with an adjustable page limit and a stop button. Results appear while the
+  crawl runs.
 - **theHarvester** (coming soon). Emails, subdomains, and hosts from public sources.
 - **hunter.io** (coming soon). Email lookup by domain.
 
@@ -86,9 +87,14 @@ change.
 
 ## Scope
 
-For authorized security testing only. Hound reads public pages. It does not attempt
-logins and does not bypass access controls. You are responsible for having permission
-to test what you point it at.
+For authorized security testing only. Hound reads publicly served pages. It does not
+attempt logins, and it does not defeat authentication or any other access control. The
+email obfuscation it decodes is a display trick the site itself serves to every visitor,
+not a security boundary.
+
+You are responsible for having permission to test what you point it at, and for
+respecting the target's terms of service, its rate limits, and any privacy law that
+applies to addresses you collect.
 
 ## License
 
