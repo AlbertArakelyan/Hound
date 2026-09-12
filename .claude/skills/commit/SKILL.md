@@ -20,8 +20,8 @@ The scope is the number the branch name starts with. On
 git branch --show-current | grep -oE '^[0-9]+'
 ```
 
-If the branch has no leading number, on `master` for example, drop the scope and write
-`type: what you did`. Do not invent a number.
+If the branch has no leading number, committing straight to `main` for example, keep the
+brackets and leave them empty: `feat(): what you did`. Do not invent a number.
 
 ## Types
 
@@ -68,7 +68,10 @@ fix(4): decode Cloudflare obfuscated addresses
 docs(7): document the tool registry contract
 chore(2): pin beautifulsoup4 and lxml
 refactor(9): move link resolution out of the crawl loop
+feat(): add the ghost to the home screen title
 ```
+
+The last one is a commit made straight on `main`, with no branch number.
 
 ## Before committing
 
