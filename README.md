@@ -30,8 +30,6 @@ Python packages are in `requirements.txt`: PyQt6 and requests.
 
 ## Running
 
-### Linux
-
 ```bash
 git clone https://github.com/AlbertArakelyan/Hound
 cd Hound
