@@ -96,6 +96,13 @@ You are responsible for having permission to test what you point it at, and for
 respecting the target's terms of service, its rate limits, and any privacy law that
 applies to addresses you collect.
 
+Do not use Hound to collect personal data at scale, evade rate limits, or conduct
+unsolicited outreach. Email addresses are personal data in most jurisdictions, and
+collecting them is not the same as being allowed to use them.
+
+To report a vulnerability in Hound, or a case of someone abusing it, see
+[SECURITY.md](SECURITY.md).
+
 ## License
 
 GPL-3.0. See [LICENSE](LICENSE).

@@ -76,6 +76,13 @@ overstates what it does invites people to use it as if the overstatement were tr
 Respecting the target's terms, its rate limits, and the privacy law covering whatever is
 collected is the user's responsibility, and the app should not make that harder.
 
+Hound is dual-use, so it says so plainly. `README.md` carries the disclaimer and
+`SECURITY.md` the contact channel, which is what GitHub's acceptable use policy asks of
+a project like this. Keep both current as tools are added.
+
+Not for collecting personal data at scale, evading rate limits, or unsolicited outreach.
+A feature that only makes sense for one of those does not belong here.
+
 ## Open questions
 
 - Which sites to cover first, and where the list lives (JSON, YAML, Python).
