@@ -1,7 +1,7 @@
 # 👻 Hound
 
 Local-first penetration testing toolkit consisting of many tools, e.g. username to
-social accounts, email scrapper and so on.
+social accounts, email scraper and so on.
 
 Hound is a desktop app. The home screen lists the tools as cards, and each tool opens
 its own page. Everything runs on your machine, there is no backend and no account.
