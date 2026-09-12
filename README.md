@@ -106,15 +106,28 @@ To report a vulnerability in Hound, or a case of someone abusing it, see
 
 ## License
 
-GPL-3.0. See [LICENSE](LICENSE).
+MIT. See [LICENSE](LICENSE).
 
 Copyright (c) 2026 Albert Arakelyan.
 
-Hound uses PySide6, which is available under the LGPL-3.0 and under a commercial license
-from The Qt Company. Hound uses the LGPL version, which a GPL-3.0 project may include.
+### Third-party licenses
 
-<!-- Hound is licensed under GPL-3.0. See [LICENSE](LICENSE). 
+Hound's own code is MIT. Its dependencies keep their own licenses:
 
-Hound uses PyQt6, which is available under the GNU GPL v3
-and Riverbank's commercial license. Hound uses the GPL-licensed
-version of PyQt6. -->
+| package | license |
+|---|---|
+| PySide6 | LGPL-3.0 (also available commercially from The Qt Company) |
+| requests | Apache-2.0 |
+| beautifulsoup4 | MIT |
+| lxml | BSD-3-Clause |
+
+PySide6 is used under the LGPL-3.0, which is what lets Hound itself be MIT. The LGPL
+applies to PySide6, not to Hound. Two things follow from it:
+
+- You can replace the PySide6 that Hound uses with your own build. Installing from
+  `requirements.txt` into your own environment already gives you that.
+- If Hound is ever shipped as a frozen binary, the Qt libraries have to stay separate and
+  replaceable, not statically linked.
+
+Qt's licensing terms are at <https://www.qt.io/licensing>, and the LGPL-3.0 text is at
+<https://www.gnu.org/licenses/lgpl-3.0.html>.

@@ -31,3 +31,8 @@ This package is the only place allowed to import PySide6 outside a tool's page a
 - Keep widget construction in small `_build_*` methods that return the widget. Long
   `__init__` bodies are the thing to avoid.
 - No blocking work in this layer. No `requests`, no `subprocess`, no `time.sleep`.
+- Import only `QtCore`, `QtGui` and `QtWidgets`. Those are LGPL, which is what lets
+  Hound be MIT. Some Qt addons, `QtCharts` and `QtVirtualKeyboard` among them, are GPL
+  or commercial, and importing one would force Hound back to GPL. The files are present
+  in the venv, so nothing stops the import except this rule. If a tool needs charts,
+  raise the licence question before writing the import.
