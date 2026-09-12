@@ -12,6 +12,10 @@ its own page. Everything runs on your machine, there is no backend and no accoun
   profile. Sites are checked concurrently, results appear as they arrive, and hits show
   a clickable profile link. A site that blocks or rate limits the request is reported as
   unknown, never as not found.
+- **Email Scraper.** Point it at a URL and it crawls the site, collecting every email
+  address it finds, including ones hidden by Cloudflare email obfuscation. Stays on the
+  starting domain by default, with an adjustable page limit and a stop button. Results
+  appear while the crawl runs.
 - **theHarvester** (coming soon). Emails, subdomains, and hosts from public sources.
 - **hunter.io** (coming soon). Email lookup by domain.
 
