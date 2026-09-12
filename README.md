@@ -1,4 +1,4 @@
-# Hound
+# 👻 Hound
 
 Local-first penetration testing toolkit consisting of many tools, e.g. username to
 social accounts.
@@ -30,8 +30,10 @@ Python packages are in `requirements.txt`: PyQt6 and requests.
 
 ## Running
 
+### Linux
+
 ```bash
-git clone <repo-url> Hound
+git clone https://github.com/AlbertArakelyan/Hound
 cd Hound
 python3 -m venv .venv
 source .venv/bin/activate
