@@ -33,6 +33,17 @@ Either repeat the guard above, or call `.venv/bin/python` and `.venv/bin/pip` di
 Running the app needs the system package `libxcb-cursor0`. Without it Qt aborts with
 "Could not load the Qt platform plugin xcb".
 
+## Examples
+
+`examples/` holds reference scripts, not part of the app. They are CLI scripts written
+against their own assumptions, so do not run them, import them, or treat them as
+something to keep working. Never add `examples/` to the venv, the requirements, or the
+registry.
+
+Read them to see how a tool should work, then port the logic into
+`hound/tools/<tool>/` following the rules below. `examples/social-accounts.py` is what
+the social account search was ported from.
+
 ## Git
 
 Never commit unless I ask for it explicitly. Leave changes in the working tree and say
