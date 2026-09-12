@@ -86,4 +86,8 @@ to test what you point it at.
 
 ## License
 
-MIT. See [LICENSE](LICENSE).
+GPL-3.0. See [LICENSE](LICENSE).
+
+Copyright (c) 2026 Albert Arakelyan.
+
+Hound builds on PyQt6, which is distributed under the GPL, so Hound is GPL too.
