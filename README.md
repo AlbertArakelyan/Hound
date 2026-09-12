@@ -6,6 +6,8 @@ social accounts.
 Hound is a desktop app. The home screen lists the tools as cards, and each tool opens
 its own page. Everything runs on your machine, there is no backend and no account.
 
+![Screenshot](./screenshot.png)
+
 ## Features
 
 - **Social account discovery.** Give it a username and it checks 27 public sites for a
