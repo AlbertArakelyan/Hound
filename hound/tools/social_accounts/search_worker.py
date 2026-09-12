@@ -2,7 +2,7 @@
 
 import time
 
-from PyQt6.QtCore import QThread, pyqtSignal
+from PySide6.QtCore import QThread, Signal
 
 from hound.tools.social_accounts.lookup import scan
 from hound.tools.social_accounts.models import Result, Status
@@ -10,8 +10,8 @@ from hound.tools.social_accounts.sites import SITES
 
 
 class SearchWorker(QThread):
-    result_ready = pyqtSignal(object)
-    search_finished = pyqtSignal(int, int, float)
+    result_ready = Signal(object)
+    search_finished = Signal(int, int, float)
 
     def __init__(self, username: str) -> None:
         super().__init__()

@@ -1,6 +1,6 @@
-from PyQt6.QtCore import Qt, pyqtSignal
-from PyQt6.QtGui import QMouseEvent
-from PyQt6.QtWidgets import QFrame, QHBoxLayout, QLabel, QVBoxLayout
+from PySide6.QtCore import Qt, Signal
+from PySide6.QtGui import QMouseEvent
+from PySide6.QtWidgets import QFrame, QHBoxLayout, QLabel, QVBoxLayout
 
 from hound.tools.registry import ToolSpec
 from hound.ui import style
@@ -9,7 +9,7 @@ from hound.ui import style
 class ToolCard(QFrame):
     """One clickable card on the home screen."""
 
-    clicked = pyqtSignal(object)
+    clicked = Signal(object)
 
     def __init__(self, spec: ToolSpec) -> None:
         super().__init__()

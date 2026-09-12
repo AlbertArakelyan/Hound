@@ -11,7 +11,7 @@ registry entry. Adding a tool must not change the home screen.
 ## Steps
 
 1. Create `hound/tools/<tool_name>/` with `__init__.py`.
-2. Write the logic in its own files. No PyQt6 imports in them.
+2. Write the logic in its own files. No PySide6 imports in them.
    - `models.py` for the dataclasses and status enum it returns.
    - Engine file named after the job, for example `lookup.py`, `harvest.py`.
    - Any fixed data (site lists, endpoints, wordlists) in its own module so the engine
@@ -54,7 +54,7 @@ registry entry. Adding a tool must not change the home screen.
 
 ## Checklist
 
-- [ ] Logic files import no PyQt6.
+- [ ] Logic files import no PySide6.
 - [ ] Page subclasses `ToolPage`, no direct network or subprocess calls in it.
 - [ ] Background work runs off the GUI thread and is stopped in `shutdown()`.
 - [ ] One `ToolSpec` added, home screen untouched.

@@ -2,16 +2,16 @@
 
 import time
 
-from PyQt6.QtCore import QThread, pyqtSignal
+from PySide6.QtCore import QThread, Signal
 
 from hound.tools.email_scraper.models import PageVisit
 from hound.tools.email_scraper.scraper import crawl
 
 
 class ScrapeWorker(QThread):
-    page_visited = pyqtSignal(object)
-    email_found = pyqtSignal(str)
-    crawl_finished = pyqtSignal(int, int, float)
+    page_visited = Signal(object)
+    email_found = Signal(str)
+    crawl_finished = Signal(int, int, float)
 
     def __init__(self, url: str, max_pages: int, same_domain: bool) -> None:
         super().__init__()

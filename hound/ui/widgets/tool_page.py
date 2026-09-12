@@ -1,5 +1,5 @@
-from PyQt6.QtCore import pyqtSignal
-from PyQt6.QtWidgets import QHBoxLayout, QLabel, QPushButton, QVBoxLayout, QWidget
+from PySide6.QtCore import Signal
+from PySide6.QtWidgets import QHBoxLayout, QLabel, QPushButton, QVBoxLayout, QWidget
 
 from hound.ui import style
 
@@ -10,7 +10,7 @@ class ToolPage(QWidget):
     Subclasses add their own widgets with add_content().
     """
 
-    back_requested = pyqtSignal()
+    back_requested = Signal()
 
     def __init__(self, title: str, icon: str = "") -> None:
         super().__init__()

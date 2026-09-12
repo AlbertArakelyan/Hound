@@ -1,7 +1,7 @@
 from collections.abc import Sequence
 
-from PyQt6.QtCore import Qt, pyqtSignal
-from PyQt6.QtWidgets import (
+from PySide6.QtCore import Qt, Signal
+from PySide6.QtWidgets import (
     QGridLayout,
     QHBoxLayout,
     QLabel,
@@ -22,7 +22,7 @@ BUTTON_SIZE = 28
 class HomeScreen(QWidget):
     """Lists the registered tools as cards. Knows nothing about any single tool."""
 
-    tool_selected = pyqtSignal(object)
+    tool_selected = Signal(object)
 
     def __init__(self, tools: Sequence[ToolSpec]) -> None:
         super().__init__()

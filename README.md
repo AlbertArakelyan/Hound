@@ -33,7 +33,8 @@ its own page. Everything runs on your machine, there is no backend and no accoun
 sudo apt install -y libxcb-cursor0
 ```
 
-Python packages are in `requirements.txt`: PyQt6 and requests.
+Python packages are in `requirements.txt`: PySide6, requests, beautifulsoup4
+and lxml.
 
 ## Running
 
@@ -64,7 +65,7 @@ To check GUI wiring without opening a window, run Qt's offscreen backend:
 
 ```bash
 QT_QPA_PLATFORM=offscreen python -c "
-from PyQt6.QtWidgets import QApplication
+from PySide6.QtWidgets import QApplication
 from hound.ui.main_window import MainWindow
 app = QApplication(['test'])
 MainWindow().show()
@@ -109,12 +110,10 @@ GPL-3.0. See [LICENSE](LICENSE).
 
 Copyright (c) 2026 Albert Arakelyan.
 
-Hound uses the GPL-licensed version of PyQt6, so it is distributed under a GPL-compatible
-license. PyQt6 is dual-licensed, GPLv3 or a commercial license from Riverbank, so this
-follows from the version pinned in `requirements.txt`, not from PyQt6 being GPL in every
-context.
+Hound uses PySide6, which is available under the LGPL-3.0 and under a commercial license
+from The Qt Company. Hound uses the LGPL version, which a GPL-3.0 project may include.
 
-<!-- Hound is licensed under GPL-3.0. See [LICENSE](LICENSE).
+<!-- Hound is licensed under GPL-3.0. See [LICENSE](LICENSE). 
 
 Hound uses PyQt6, which is available under the GNU GPL v3
 and Riverbank's commercial license. Hound uses the GPL-licensed

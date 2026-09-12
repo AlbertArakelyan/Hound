@@ -10,11 +10,11 @@ You check that Hound's code still matches the structure rules in `SPEC.md` and
 
 Check these, in order of how much they matter:
 
-1. **Qt free logic.** No file that holds engine or model code imports PyQt6. Widgets,
+1. **Qt free logic.** No file that holds engine or model code imports PySide6. Widgets,
    pages, and `*_worker.py` may. Everything else may not.
 
    ```bash
-   grep -rln --include='*.py' PyQt6 hound/ \
+   grep -rln --include='*.py' PySide6 hound/ \
      | grep -vE '^hound/(ui/|app\.py$)' \
      | grep -vE '(page|_worker|result_row)\.py$'
    ```
@@ -22,7 +22,7 @@ Check these, in order of how much they matter:
 2. **Home screen knows no tool.** `hound/ui/home.py` and `hound/ui/main_window.py` must
    not import anything under `hound/tools/<name>/`. Only `hound.tools.registry`.
 
-3. **Registry stays Qt free.** `hound/tools/registry.py` imports no PyQt6. Page imports
+3. **Registry stays Qt free.** `hound/tools/registry.py` imports no PySide6. Page imports
    live inside the lazy factory functions.
 
 4. **`main.py` stays a wiring layer.** It starts the app and nothing else. Flag any
