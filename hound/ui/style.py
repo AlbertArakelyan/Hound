@@ -103,6 +103,23 @@ def quiet_button_style() -> str:
     """
 
 
+def round_button_style(diameter: int) -> str:
+    """A circular button. The radius has to be half the size or it is not round."""
+    return f"""
+    QPushButton {{
+        background-color: transparent;
+        border: 1px solid rgba({MUTED}, 0.45);
+        border-radius: {diameter // 2}px;
+        color: rgba({MUTED}, 1.0);
+        font-weight: bold;
+    }}
+    QPushButton:hover {{
+        border: 1px solid rgba({ACCENT}, 0.80);
+        color: rgba({ACCENT}, 1.0);
+    }}
+    """
+
+
 def link(url: str, text: str | None = None) -> str:
     """An anchor that stays readable on both themes.
 
