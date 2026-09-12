@@ -21,7 +21,7 @@ class HomeScreen(QWidget):
         layout.setContentsMargins(32, 32, 32, 32)
         layout.setSpacing(24)
 
-        title = QLabel("Hound")
+        title = QLabel("👻 Hound")
         title.setStyleSheet("font-size: 28px; font-weight: bold;")
         layout.addWidget(title)
 
